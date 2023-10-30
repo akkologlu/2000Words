@@ -1,37 +1,56 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { removeFavWord } from "../store/slices/favWordSlice";
-import { getAllWords } from "../api/api";
-
+import { getAllWords, deleteWord } from "../api/api";
+import Flashcard from "./Flashcard";
+import { TiDeleteOutline } from "react-icons/ti";
 function FavWord() {
   const [words, setWords] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const fetchData = async () => {
-    const fetchedWords = await getAllWords();
-    setWords(fetchedWords);
+    try {
+      const fetchedWords = await getAllWords();
+      setWords(fetchedWords);
+      setLoading(false);
+    } catch (error) {
+      console.error("Veri yüklenirken bir hata oluştu:", error);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(words);
-  const dispatch = useDispatch();
-  const { favWord } = useSelector((state) => state.favWord);
-  //console.log(favWord);
-  return (
-    <div>
-      <h1>Favorite Words</h1>
 
-      {favWord.map((item, index) => (
-        <div key={index}>
-          <h3>{item.english}</h3>
+  const handleDelete = async (id) => {
+    try {
+      await deleteWord(id);
+      fetchData(); // Refresh the data after deletion
+    } catch (error) {
+      console.error("Silme işlemi sırasında hata oluştu:", error);
+    }
+  };
+
+  if (loading) {
+    return <div>Veri yükleniyor...</div>;
+  }
+
+  if (!words.data || !Array.isArray(words.data.words)) {
+    return <div>Veri bulunamadı.</div>;
+  }
+
+  return (
+    <div className="flex">
+      {words.data.words.map((item, index) => (
+        <div key={index} className="relative">
+          <Flashcard english={item.english} turkish={item.turkish} />
 
           <button
+            className="absolute top-2 right-2 p-2 text-2xl text-white"
             onClick={() => {
-              dispatch(removeFavWord({ english: item.english }));
+              handleDelete(item._id);
             }}
           >
-            Remove
+            <TiDeleteOutline />
           </button>
         </div>
       ))}

@@ -2,10 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import words from "../words.json";
 import { TbBulb } from "react-icons/tb";
 import { AiFillCheckCircle } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { createWord } from "../api/api";
 
 function Home() {
-  const dispatch = useDispatch();
   const [randomNum, setRandomNum] = useState(
     Math.floor(Math.random() * words.length)
   );
@@ -65,7 +64,6 @@ function Home() {
     setWordCountHint(0);
     setLetterCountHint(0);
   };
-  console.log(words[randomNum].turkish);
   return (
     <div className="App bg-gray-900 h-screen text-white flex flex-col items-center justify-center text-center">
       <p className="md:text-9xl text-5xl">{words[randomNum].english}</p>
@@ -91,13 +89,10 @@ function Home() {
       <div>
         <button
           onClick={() => {
-            dispatch({
-              type: "favWord/addFavWord",
-              payload: {
-                english: words[randomNum].english,
-                turkish: words[randomNum].turkish,
-                example: words[randomNum].example,
-              },
+            createWord({
+              english: words[randomNum].english,
+              turkish: words[randomNum].turkish,
+              example: words[randomNum].example,
             });
           }}
         >
