@@ -65,9 +65,9 @@ function Home() {
     setLetterCountHint(0);
   };
   return (
-    <div className="App bg-gray-900 h-screen text-white flex flex-col items-center justify-center text-center">
+    <div className="App h-screen text-black flex flex-col items-center  text-center">
       <p className="md:text-9xl text-5xl">{words[randomNum].english}</p>
-      <p className="mid:text-2xl text-xl mt-4">{words[randomNum].example}</p>
+      <p className="mid:text-2xl text-xl mt-12">{words[randomNum].example}</p>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -88,6 +88,7 @@ function Home() {
       )}
       <div>
         <button
+          className="border bg-[#f56038] rounded-3xl mt-12 text-white py-2 px-4 md:text-3xl text-xl focus:outline-none hover:bg-[#12492f] ease-in-out duration-300"
           onClick={() => {
             createWord({
               english: words[randomNum].english,
@@ -96,10 +97,10 @@ function Home() {
             });
           }}
         >
-          <p className="md:text-2xl text-xl mt-12">Kelime Listesine Ekle</p>
+          <p className="md:text-2xl text-xl">Kelime Listesine Ekle</p>
         </button>
       </div>
-      <div className="flex items-center space-x-3 mt-24 md:text-5xl text-2xl">
+      <div className="flex items-center space-x-3 mt-24 md:text-5xl text-2xl text-[#12492f]">
         <AiFillCheckCircle />
         <p>{score}</p>
       </div>

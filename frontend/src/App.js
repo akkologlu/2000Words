@@ -6,7 +6,7 @@ import Navbar from "./components/NavBar";
 import "./App.css";
 function App() {
   return (
-    <div className="App bg-gray-900 min-h-screen">
+    <div className="App bg-[#EDEADE] min-h-screen md:px-28 px-6">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

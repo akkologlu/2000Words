@@ -11,12 +11,10 @@ function Flashcard({ english, turkish }) {
     <div className="flashcard" onClick={handleFlip}>
       <div className={`card ${isFlipped ? "flipped" : ""}`}>
         <div className="side front">
-          <h2>English</h2>
-          <p>{english}</p>
+          <p className="text-3xl ">{english}</p>
         </div>
         <div className="side back">
-          <h2>Turkish</h2>
-          <p>{turkish}</p>
+          <p className="text-3xl">{turkish}</p>
         </div>
       </div>
     </div>

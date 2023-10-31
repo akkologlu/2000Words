@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllWords, deleteWord } from "../api/api";
 import Flashcard from "./Flashcard";
 import { TiDeleteOutline } from "react-icons/ti";
+import Loading from "./Loading";
 function FavWord() {
   const [words, setWords] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -31,15 +32,15 @@ function FavWord() {
   };
 
   if (loading) {
-    return <div>Veri yükleniyor...</div>;
+    return <Loading />;
   }
 
   if (!words.data || !Array.isArray(words.data.words)) {
-    return <div>Veri bulunamadı.</div>;
+    return <div className="text-center">Veri bulunamadı.</div>;
   }
 
   return (
-    <div className="flex">
+    <div className="flex flex-wrap justify-center md:justify-start">
       {words.data.words.map((item, index) => (
         <div key={index} className="relative">
           <Flashcard english={item.english} turkish={item.turkish} />

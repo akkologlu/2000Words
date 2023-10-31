@@ -17,21 +17,21 @@ function Navbar() {
   };
 
   return (
-    <div className=" bg-gray-900 text-white">
-      <nav className="container relative mx-auto p-6 mainNav">
-        <div className="flex items-center justify-between space-x-20 my-6">
-          <div className="hidden text-lg items-center space-x-10 font-mukta uppercase md:flex">
+    <div className="text-black">
+      <nav className="container relative mx-auto py-6 mainNav">
+        <div className="flex my-6">
+          <div className="hidden text-lg items-center space-x-10 font-mukta md:flex">
             <NavLink
               to="/"
               className="tracking-widest  text-primary hover:text-secondary"
             >
-              Anasayfa
+              ANASAYFA
             </NavLink>
             <NavLink
               to="/wordList"
               className="tracking-widest text-primary hover:text-secondary"
             >
-              Listem
+              LİSTEM
             </NavLink>
           </div>
           <div className="md:hidden">
@@ -50,8 +50,8 @@ function Navbar() {
       </nav>
       <div
         ref={menuRef}
-        className={`z-10 absolute top-0 bottom-0 left-0 flex-col self-end w-full min-h-screen py-1 pt-40 pl-12 space-y-3 text-lg text-primary uppercase bg-black ${
-          isMenuOpen ? "flex" : "hidden"
+        className={`z-10 absolute top-0 bottom-0 left-0 flex-col self-end w-full min-h-screen py-1 pt-40 pl-12 space-y-3 text-lg text-white uppercase bg-[#f56038] ${
+          isMenuOpen ? "flex " : "hidden "
         }`}
       >
         <NavLink
